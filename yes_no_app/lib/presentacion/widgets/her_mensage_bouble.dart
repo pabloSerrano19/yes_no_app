@@ -24,7 +24,7 @@ class HerMensageBouble extends StatelessWidget {
               child: Text(textmensage.text,style: const TextStyle(color :Color.fromARGB(225, 225, 225, 225)) )),
           ),
           const SizedBox(height: 10),
-           _imagebouble()
+           _imagebouble(textmensage.imageUrl),
            
       ],
     );
@@ -33,12 +33,15 @@ class HerMensageBouble extends StatelessWidget {
 
 // ignore: camel_case_types
 class _imagebouble extends StatelessWidget{
+  final String? imageUrl;
+  const _imagebouble( this.imageUrl);
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius:  BorderRadius.circular(60),
       child: Image.network(
-        "https://media.tenor.com/4nW98S0_wQcAAAAM/dance-battle.gif" ,width:500,
+       imageUrl!
+      ,width:500,
         fit: BoxFit.fill,
         loadingBuilder: (context, child, loadingProgress){
           if(loadingProgress == null) return child;
