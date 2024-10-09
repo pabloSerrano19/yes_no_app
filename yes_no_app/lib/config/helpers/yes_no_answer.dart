@@ -21,7 +21,7 @@ Future <Message> getAnswer() async{
   return yesNoModel.toMessageEntity();
   
 
-  throw UnimplementedError();
+  //throw UnimplementedError();
 }
 
 }
