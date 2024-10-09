@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/domain/message.dart';
 
-void main() => runApp(const MyMensageBouble());
+
 
 class MyMensageBouble extends StatelessWidget {
-  const MyMensageBouble({super.key});
+  final Message textmensage;
+
+  const MyMensageBouble({super.key, required this.textmensage});
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +19,13 @@ class MyMensageBouble extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.end,
       children: [
           Container(
-            height: 40,
-            width: 110,
             decoration: BoxDecoration(
               color: Colores.primary,
               borderRadius: BorderRadius.circular(20)
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              child: Text("que dices koku",style: TextStyle(color :Color.fromARGB(225, 225, 225, 225)) )),
+            child:  Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: Text(textmensage.text,style: const TextStyle(color :Color.fromARGB(225, 225, 225, 225)) )),
           ),
           const SizedBox(height: 10)
       ],

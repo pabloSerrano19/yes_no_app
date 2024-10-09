@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yes_no_app/presentacion/providers/chat_provider.dart';
 
 class MessageFieldBox  extends StatelessWidget{
   const MessageFieldBox({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final chatprovider =context.watch<ChatProvider>();
 
   var texController =TextEditingController();
    final colores = Theme.of(context).colorScheme; 
@@ -28,6 +31,7 @@ class MessageFieldBox  extends StatelessWidget{
           onPressed: (){
             final texvalue = texController.value.text;
             print("VALOR DE LA CAJA DE TEXTO $texvalue" );
+            chatprovider.sendMessage(texvalue);
           },
         )
       );
@@ -42,6 +46,8 @@ class MessageFieldBox  extends StatelessWidget{
       controller :texController,
       onFieldSubmitted: (value) {
         print("submit: $value");
+        chatprovider.sendMessage(value);
+        
         texController.clear();
         focusNode.requestFocus();
       } 

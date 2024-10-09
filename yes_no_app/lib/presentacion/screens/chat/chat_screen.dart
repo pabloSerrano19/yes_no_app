@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yes_no_app/domain/message.dart';
+import 'package:yes_no_app/presentacion/providers/chat_provider.dart';
 import 'package:yes_no_app/presentacion/widgets/her_mensage_bouble.dart';
 import 'package:yes_no_app/presentacion/widgets/my_mensage_bouble.dart';
 import 'package:yes_no_app/presentacion/widgets/shared/message_field_box.dart';
@@ -34,6 +37,11 @@ class _chatView extends StatelessWidget {
  
   @override
   Widget build(BuildContext context) {
+    
+
+    final chatprovider =context.watch<ChatProvider>();
+    chatprovider.messageList;
+
       return 
           SizedBox(
             child: Padding(
@@ -42,10 +50,14 @@ class _chatView extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(child:ListView.builder(
-                    itemCount: 2,itemBuilder: (context,index){
-                    return (index % 2 == 0)
-                     ?const HerMensageBouble()
-                    :const MyMensageBouble();
+                    controller: chatprovider.chatcrollController,
+                    itemCount: chatprovider.messageList.length,
+                    itemBuilder: (context,index){
+                    final message =chatprovider.messageList[index];
+                    return(message.fromWho==FromWho.hers)
+                      ?HerMensageBouble(textmensage:message)
+                      :MyMensageBouble(textmensage:message);
+                    
                     }
                   )
                   ),

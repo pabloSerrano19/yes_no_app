@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
-void main() => runApp(const HerMensageBouble());
+import 'package:yes_no_app/domain/message.dart';
 
 class HerMensageBouble extends StatelessWidget {
-  const HerMensageBouble({super.key});
+  final Message textmensage;
+  const HerMensageBouble({super.key, required this.textmensage});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +15,13 @@ class HerMensageBouble extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
       children: [
           Container(
-            height: 40,
-            width: 110,
             decoration: BoxDecoration(
               color: Colores.primary,
               borderRadius: BorderRadius.circular(20)
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text("mondongo",style: TextStyle(color :Color.fromARGB(225, 225, 225, 225)) )),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(textmensage.text,style: const TextStyle(color :Color.fromARGB(225, 225, 225, 225)) )),
           ),
           const SizedBox(height: 10),
            _imagebouble()
